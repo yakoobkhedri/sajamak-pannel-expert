@@ -185,7 +185,12 @@ a {
     color: #00BED8 !important;
     border-bottom: 3px solid #00BED8;
 }
-
+.fa-plus::before {
+    content: url('../img/ic-eva_cloud-upload-fill.png')!important;
+  }
+  .fa-trash-o::before {
+    content: url('../img/close-circle.png')!important;
+  }
 /* sidebar */
 .sidebar {
     background-color: #1F2A37;

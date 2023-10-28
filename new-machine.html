@@ -2,13 +2,48 @@
 <html lang="fa" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/styles.css'>
-    <title>افزودن تجهیزات و ماشین آلات</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link rel='stylesheet' type='text/css' media='screen' href='assets/css/styles.css'>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/jquery.uploader.css">
+  <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <title>افزودن تجهیزات و ماشین آلات</title>
 </head>
+
+<style>
+  .jquery-uploader-select-card {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    transition: all .4s;
+  }
+  .jquery-uploader-card {
+    width: 31%;
+  }
+  .jquery-uploader-select-card:hover {
+    background-color: #6c757d;
+  }
+
+  .jquery-uploader-select-card:hover a,
+  .jquery-uploader-select-card a:hover {
+    color: white !important;
+  }
+
+  .jquery-uploader-select>.upload-button {
+    display: flex;
+    align-items: center;
+  }
+
+  .jquery-uploader-preview-container {
+    padding: 0;
+  }
+
+  .fa-plus::before {
+    content: '' !important;
+  }
+</style>
 
 <body>
 
@@ -266,13 +301,7 @@
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">گالری تصاویر</label>
                                             <div class="border rounded-3 p-3">
-                                              <div class="d-flex flex-wrap gap-3 align-items-center justify-content-md-between justify-content-center">
-                                                <img src="assets/img/Rectangle 3425.png">
-                                                <img src="assets/img/Rectangle 3426.png">
-                                                <img src="assets/img/Rectangle 3427.png">
-                                                <img src="assets/img/Rectangle 3425.png">
-                                              </div>
-                                              <a class="border rounded-3 mt-3 text-center btn-outline-secondary fw-bold p-2 d-block">افزودن از گالری تصاویر</a>
+                                              <input type="text" id="demo1" value="">
                                             </div>
                                             <input type="submit" value="ثبت اطلاعات"
                                             class="btn btn-info py-3 mt-4 text-white w-100 font-bold me-auto d-block">
@@ -287,10 +316,49 @@
     </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    
+  <script src="assets/js/scripts.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="assets/js/jquery.uploader.min2.js"></script>
+  <script type="application/javascript">
+    let ajaxConfig = {
+      ajaxRequester: function (config, uploadFile, pCall, sCall, eCall) {
+        let progress = 0
+        let interval = setInterval(() => {
+          progress += 10;
+          pCall(progress)
+          if (progress >= 100) {
+            clearInterval(interval)
+            const windowURL = window.URL || window.webkitURL;
+            sCall({
+              data: windowURL.createObjectURL(uploadFile.file)
+            })
+            // eCall("上传异常")
+          }
+        }, 300)
+      }
+    }
+    $("#demo1").uploader({
+      multiple: true,
+      ajaxConfig: ajaxConfig,
+      autoUpload: false,
+      defaultValue: [
+        {
+          name: "machine1",
+          url: "assets/img/Rectangle 3425.png"
+        }, {
+          name: "machine2",
+          url: "assets/img/Rectangle 3426.png"
+        }, {
+          name: "machine3",
+          url: "assets/img/Rectangle 3427.png"
+        }
+      ],
+    })
+
+  </script>
+
 </body>
 
 </html>
