@@ -13,44 +13,18 @@ openSidebar.addEventListener('click',function () {
   overlay.classList.add('active');
 })
 
-// fancybox
 
-Fancybox.bind("[data-fancybox]", {
-  // Your custom options
-});
-// animation
+// data table
 
-ScrollReveal().reveal('.top', {
-  duration: 2000,
-  origin: 'top',
-  distance: '100px',
-  delay: 500,
-  easing: 'ease-out'
-});
-
-ScrollReveal().reveal('.bottom', {
-  duration: 2000,
-  origin: 'bottom',
-  distance: '100px',
-  delay: 500,
-  easing: 'ease-out'
-});
-
-ScrollReveal().reveal('.left', {
-  duration: 2000,
-  origin: 'left',
-  distance: '100px',
-  delay: 500,
-  easing: 'ease-out'
-});
-
-ScrollReveal().reveal('.right', {
-  duration: 2000,
-  origin: 'right',
-  distance: '100px',
-  delay: 500,
-  easing: 'ease-out'
-});
+// let table = new DataTable('#myTable');
+$(document).ready( function () {
+  $('#myTable').DataTable({
+    paging: false
+  });
+  $('#myTable2').DataTable({
+    paging: false
+  });
+} );
 
 // datapicker
 
