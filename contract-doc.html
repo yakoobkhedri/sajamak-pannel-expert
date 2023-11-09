@@ -361,12 +361,15 @@
         filename: 'قرارداد.pdf',
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
       };
+      
       // New Promise-based usage:
       html2pdf().set(opt).from(element).save();
 
       // Old monolithic-style usage:
       html2pdf(element, opt);
+
     }
+
   </script>
 
 </body>
