@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,8 @@
           </div>
           <img alt="" src="assets/img/chevron-double-right.svg" class="cursor transition" id="toggle-sidebar">
         </div>
-        <div class="avatar d-flex align-items-center justify-content-center rounded-circle mx-auto mt-5 position-relative">
+        <div
+          class="avatar d-flex align-items-center justify-content-center rounded-circle mx-auto mt-5 position-relative">
           <div>
             <img src="assets/img/9.png">
             <div>
@@ -118,7 +119,7 @@
                 <img alt="language" src="assets/img/artwork.png">
                 <p class="mb-0 fw-bold fs-7 text-secondary">فارسی</p>
               </li>
-           
+
             </ul>
           </div>
           <span class="divider"></span>
@@ -147,11 +148,13 @@
               قرارداد 2365
             </a>
             <div class="d-flex align-items-center gap-2">
-              <a>
+              <a onclick="convertHTMLtoPDF()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <rect width="32" height="32" rx="6" fill="#E5E7EB"/>
-                  <path d="M13 7.75H10.9118C9.92403 7.75 9.05178 8.39423 8.76129 9.33831L6.3495 17.1766C6.28354 17.391 6.25 17.614 6.25 17.8383V22C6.25 23.2426 7.25736 24.25 8.5 24.25H23.5C24.7426 24.25 25.75 23.2426 25.75 22V17.8383C25.75 17.614 25.7165 17.391 25.6505 17.1766L23.2387 9.33831C22.9482 8.39423 22.076 7.75 21.0882 7.75H19M6.25 17.5H10.1094C10.9617 17.5 11.7408 17.9815 12.1219 18.7438L12.3781 19.2562C12.7592 20.0185 13.5383 20.5 14.3906 20.5H17.6094C18.4617 20.5 19.2408 20.0185 19.6219 19.2562L19.8781 18.7438C20.2592 17.9815 21.0383 17.5 21.8906 17.5H25.75M16 7V15.25M16 15.25L13 12.25M16 15.25L19 12.25" stroke="#374151" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                  <rect width="32" height="32" rx="6" fill="#E5E7EB" />
+                  <path
+                    d="M13 7.75H10.9118C9.92403 7.75 9.05178 8.39423 8.76129 9.33831L6.3495 17.1766C6.28354 17.391 6.25 17.614 6.25 17.8383V22C6.25 23.2426 7.25736 24.25 8.5 24.25H23.5C24.7426 24.25 25.75 23.2426 25.75 22V17.8383C25.75 17.614 25.7165 17.391 25.6505 17.1766L23.2387 9.33831C22.9482 8.39423 22.076 7.75 21.0882 7.75H19M6.25 17.5H10.1094C10.9617 17.5 11.7408 17.9815 12.1219 18.7438L12.3781 19.2562C12.7592 20.0185 13.5383 20.5 14.3906 20.5H17.6094C18.4617 20.5 19.2408 20.0185 19.6219 19.2562L19.8781 18.7438C20.2592 17.9815 21.0383 17.5 21.8906 17.5H25.75M16 7V15.25M16 15.25L13 12.25M16 15.25L19 12.25"
+                    stroke="#374151" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </a>
               <a onclick="printPage();" class="d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -343,10 +346,29 @@
 
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-  <script src="assets/js/scrollreveal.min.js"></script>
+
   <script src="assets/js/bootstrap.bundle.min.js"></script>/
   <script src="assets/js/scripts.js"></script>
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    function convertHTMLtoPDF() {
+      var element = document.getElementById('mybox');
+      var opt = {
+        margin: 0.5,
+        filename: 'قرارداد.pdf',
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      // New Promise-based usage:
+      html2pdf().set(opt).from(element).save();
+
+      // Old monolithic-style usage:
+      html2pdf(element, opt);
+    }
+  </script>
+
 </body>
 
 </html>
